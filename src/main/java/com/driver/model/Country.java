@@ -1,4 +1,3 @@
-// Note: Do not write @Enumerated annotation above CountryName in this model.
 package com.driver.model;
 
 import javax.persistence.*;
@@ -11,41 +10,24 @@ public class Country {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    private CountryName countryName;
+
     private String code;
 
-    CountryName countryName;
+    @ManyToOne
+    @JoinColumn
+    private ServiceProvider serviceProvider;
 
     @OneToOne
     @JoinColumn
     private User user;
 
-    @ManyToOne
-    @JoinColumn
-    ServiceProvider serviceProvider;
+    public Country(CountryName countryName, String code) {
+        this.countryName = countryName;
+        this.code = code;
+    }
 
     public Country() {
-    }
-
-    public Country(int id, String code, CountryName countryName) {
-        this.id = id;
-        this.code = code;
-        this.countryName = countryName;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public ServiceProvider getServiceProvider() {
-        return serviceProvider;
-    }
-
-    public void setServiceProvider(ServiceProvider serviceProvider) {
-        this.serviceProvider = serviceProvider;
     }
 
     public int getId() {
@@ -56,6 +38,14 @@ public class Country {
         this.id = id;
     }
 
+    public CountryName getCountryName() {
+        return countryName;
+    }
+
+    public void setCountryName(CountryName countryName) {
+        this.countryName = countryName;
+    }
+
     public String getCode() {
         return code;
     }
@@ -64,11 +54,19 @@ public class Country {
         this.code = code;
     }
 
-    public CountryName getCountryName() {
-        return countryName;
+    public ServiceProvider getServiceProvider() {
+        return serviceProvider;
     }
 
-    public void setCountryName(CountryName countryName) {
-        this.countryName = countryName;
+    public void setServiceProvider(ServiceProvider serviceProvider) {
+        this.serviceProvider = serviceProvider;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
