@@ -25,15 +25,15 @@ public class User {
     private boolean isConnected;
 
 
-    @OneToOne
-    @JoinColumn
-    Country country;
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    private Country country;
 
     @ManyToMany
-    List<ServiceProvider> serviceProviderList;
+    @JoinColumn
+    private List<ServiceProvider> serviceProviderList = new ArrayList<>();
 
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
-    List<Connection> connectionList;
+    private List<Connection> connectionList = new ArrayList<>();
 
     public User() {
     }

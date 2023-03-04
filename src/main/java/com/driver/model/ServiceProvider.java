@@ -18,15 +18,15 @@ public class ServiceProvider {
     @JoinColumn
     Admin admin;
 
-    @ManyToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL)
-    List<User> users;
+    @ManyToMany(mappedBy = "serviceProviderList",cascade = CascadeType.ALL)
+    private List<User> users = new ArrayList<>();
 
     @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL)
-    List<Country> countryList;
+    private List<Country> countryList = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "serviceProvider", cascade = CascadeType.ALL)
-    List<Connection> connectionList;
+    private List<Connection> connectionList = new ArrayList<>();
 
     public ServiceProvider() {
     }
